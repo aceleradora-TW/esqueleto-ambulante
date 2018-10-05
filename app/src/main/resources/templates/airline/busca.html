@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Busca de Voos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        form .input {
+            border-radius: 0;
+            box-shadow: 0 0 0;
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-12">
+                    <h1 class="title is-size-1"> ACELERADORA AIRLINES </h1>
+                </div>
+
+                <div class="column is-7">
+                    <div class="box has-background-white-ter">
+                        <h2 class="subtitle has-text-grey-dark"> Busque seu voo </h2>
+                        <form action="/airline/busca">
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <label class="label">Origem</label>
+                                    <input class="input" type="text" placeholder="POA" name="origem">
+                                </div>
+
+                                <div class="control">
+                                    <label class="label">Destino</label>
+                                    <input class="input" type="text" placeholder="MIA" name="destino">
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <label class="label">Data de ida</label>
+                                    <input class="input" type="text" name="dataIda">
+                                </div>
+
+                                <div class="control">
+                                    <label class="label">Data de volta</label>
+                                    <input class="input" type="text" name="dataVolta">
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <label class="label">Passageiros</label>
+                                    <input class="input" type="text" name="dataIda">
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button class="button is-primary is-outlined" type="submit">BUSCAR</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+</body>
+</html>
