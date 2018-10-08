@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Itinerarios Encontrados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="columns is-multiline">
+        <div class="column" th:each="itinerario : ${itinerarios}">
+            <p th:text="${itinerario.origem.iata}"></p>
+            <p th:text="${itinerario.origem.nome}"></p>
+            <p th:text="${itinerario.origem.cidade}"></p>
+            <hr>
+            <p th:text="${itinerario.destino.iata}"></p>
+            <p th:text="${itinerario.destino.nome}"></p>
+            <p th:text="${itinerario.destino.cidade}"></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

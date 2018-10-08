@@ -1,7 +1,5 @@
 package com.thoughtworks.aceleradora.airline.dominio;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDate;
 
 public class Busca {
