@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import java.time.LocalDateTime;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -18,9 +17,6 @@ public class Segmento {
     @OneToOne
     private Itinerario itinerario;
 
-    private LocalDateTime horarioDecolagem;
-    private LocalDateTime horarioPouso;
-
     public Segmento() {
     }
 
@@ -30,22 +26,6 @@ public class Segmento {
 
     public void setItinerario(Itinerario itinerario) {
         this.itinerario = itinerario;
-    }
-
-    public LocalDateTime getHorarioDecolagem() {
-        return horarioDecolagem;
-    }
-
-    public void setHorarioDecolagem(LocalDateTime horarioDecolagem) {
-        this.horarioDecolagem = horarioDecolagem;
-    }
-
-    public LocalDateTime getHorarioPouso() {
-        return horarioPouso;
-    }
-
-    public void setHorarioPouso(LocalDateTime horarioPouso) {
-        this.horarioPouso = horarioPouso;
     }
 
     public Aeroporto getOrigem() {
