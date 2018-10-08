@@ -5,22 +5,121 @@
     <meta charset="UTF-8">
     <title>Itinerarios Encontrados</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://unpkg.com/pikaday@1.7.0/pikaday.js"></script>
+    <script src="/js/seletor-de-data.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/pikaday@1.7.0/css/pikaday.css">
 </head>
 <body>
 
-<div class="container">
-    <div class="columns is-multiline">
-        <div class="column" th:each="itinerario : ${itinerarios}">
-            <p th:text="${itinerario.origem.iata}"></p>
-            <p th:text="${itinerario.origem.nome}"></p>
-            <p th:text="${itinerario.origem.cidade}"></p>
-            <hr>
-            <p th:text="${itinerario.destino.iata}"></p>
-            <p th:text="${itinerario.destino.nome}"></p>
-            <p th:text="${itinerario.destino.cidade}"></p>
-        </div>
-    </div>
-</div>
+<section class="section">
+    <section class="section">
+        <div class="container">
+            <nav class="panel">
+                <p class="panel-heading">Busca</p>
+                <div class="panel-block">
+                    <form action="/airline/busca" method="post">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <label class="label">Origem</label>
+                                <input class="input" type="text" placeholder="POA" name="origem" th:value="${busca.origem}" autocomplete="off">
+                            </div>
 
+                            <div class="control">
+                                <label class="label">Destino</label>
+                                <input class="input" type="text" placeholder="MIA" name="destino" th:value="${busca.destino}" autocomplete="off">
+                            </div>
+
+                            <div class="control">
+                                <label class="label">Data de ida</label>
+                                <input class="input datepicker" type="text" name="dataIda" id="data-ida" autocomplete="off">
+                            </div>
+
+                            <div class="control">
+                                <label class="label">Data de volta</label>
+                                <input class="input" type="text" name="dataVolta" id="data-volta" autocomplete="off">
+                            </div>
+
+                            <div class="control">
+                                <label class="label">Passageiros</label>
+                                <input class="input" type="number" name="adultos" min="1" max="10" th:value="${busca.adultos}">
+                            </div>
+                            <div class="control">
+                                <button class="button is-primary" type="submit">BUSCAR</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <section class="section">
+
+        <div class="container">
+
+            <h1 class="subtitle">Escolha seu voo:</h1>
+
+            <div class="columns is-multiline">
+                <div class="column is-12" th:each="voo : ${voos}">
+                    <nav class="level box">
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="title" th:text="${voo.itinerario.origem.iata}"></p>
+                                <p class="heading" th:text="${voo.itinerario.origem.cidade}"></p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="title" th:text="${voo.itinerario.destino.iata}"></p>
+                                <p class="heading" th:text="${voo.itinerario.destino.cidade}"></p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="title" th:text="${voo.paradas}"></p>
+                                <p class="heading" th:text="${voo.paradas > 1 ? 'Paradas' : 'Parada'}"></p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="title" th:text="${voo.duracaoEmHoras}"></p>
+                                <p class="heading">Horas de voo</p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                            <span class="icon is-large">
+                              <i class="fas fa-3x fa-angle-down"></i>
+                            </span>
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>
+
+<script type="text/javascript" th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        /*<![CDATA[*/
+
+        var dataIdaSelecionada = /*[[${busca.dataIda}]]*/ 'default';
+        var dataVoltaSelecionada = /*[[${busca.dataVolta}]]*/ 'default';
+
+        var seletorDataIda = seletorDeData('#data-ida');
+        var seletorDataVolta = seletorDeData('#data-volta');
+
+        seletorDataIda.setDate(new Date(dataIdaSelecionada));
+        seletorDataVolta.setDate(new Date(dataVoltaSelecionada));
+
+        /*]]>*/
+
+    })
+</script>
 </body>
 </html>
