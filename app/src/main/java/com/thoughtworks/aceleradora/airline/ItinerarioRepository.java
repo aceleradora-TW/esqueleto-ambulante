@@ -22,7 +22,6 @@ public interface ItinerarioRepository extends CrudRepository<Itinerario, Long>, 
 
             String origemLowerCase = origemProcurada.toLowerCase();
 
-
             Specification<Itinerario> likeIata = (root, query, criteriaBuilder) -> criteriaBuilder
                     .like(criteriaBuilder
                             .lower(root.join("origem").get("iata")), origemLowerCase);
