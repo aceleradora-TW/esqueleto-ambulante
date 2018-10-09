@@ -2,6 +2,8 @@ server:
   port: ${PORT:8080}
 
 spring:
+  flyway:
+    locations: classpath:/db/migration,classpath:/db/seeding
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${ESQUELETO_DB_HOST:localhost}:${ESQUELETO_DB_PORT:5432}/${ESQUELETO_DB_NAME:esqueleto}

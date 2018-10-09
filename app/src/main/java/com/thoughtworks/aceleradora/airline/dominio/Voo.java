@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -26,6 +27,11 @@ public class Voo {
     private List<Segmento> segmentos = new ArrayList<>();
 
     public Voo() {
+    }
+
+    public Voo(Itinerario itinerario, List<Segmento> segmentos) {
+        this.itinerario = itinerario;
+        this.segmentos = segmentos;
     }
 
     public Itinerario getItinerario() {
@@ -54,5 +60,30 @@ public class Voo {
 
     public void addSegmento(Segmento segmento) {
         segmentos.add(segmento);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Voo voo = (Voo) o;
+        return Objects.equals(id, voo.id) &&
+                Objects.equals(itinerario, voo.itinerario) &&
+                Objects.equals(segmentos, voo.segmentos);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, itinerario, segmentos);
+    }
+
+    @Override
+    public String toString() {
+        return "Voo{" +
+                "id=" + id +
+                ", itinerario=" + itinerario +
+                ", segmentos=" + segmentos +
+                '}';
     }
 }

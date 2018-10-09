@@ -3,6 +3,7 @@ package com.thoughtworks.aceleradora.airline.dominio;
 import javax.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -29,6 +30,13 @@ public class Itinerario {
     private LocalDateTime horarioPouso;
 
     public Itinerario() {
+    }
+
+    public Itinerario(Aeroporto origem, Aeroporto destino, LocalDateTime horarioDecolagem, LocalDateTime horarioPouso) {
+        this.origem = origem;
+        this.destino = destino;
+        this.horarioDecolagem = horarioDecolagem;
+        this.horarioPouso = horarioPouso;
     }
 
     public Aeroporto getOrigem() {
@@ -61,5 +69,34 @@ public class Itinerario {
 
     public void setHorarioPouso(LocalDateTime horarioPouso) {
         this.horarioPouso = horarioPouso;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Itinerario that = (Itinerario) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(origem, that.origem) &&
+                Objects.equals(destino, that.destino) &&
+                Objects.equals(horarioDecolagem, that.horarioDecolagem) &&
+                Objects.equals(horarioPouso, that.horarioPouso);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, origem, destino, horarioDecolagem, horarioPouso);
+    }
+
+    @Override
+    public String toString() {
+        return "Itinerario{" +
+                "id=" + id +
+                ", origem=" + origem +
+                ", destino=" + destino +
+                ", horarioDecolagem=" + horarioDecolagem +
+                ", horarioPouso=" + horarioPouso +
+                '}';
     }
 }
