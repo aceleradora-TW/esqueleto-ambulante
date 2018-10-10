@@ -8,14 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
-import static java.util.Collections.emptyList;
-import static java.util.stream.Collectors.toList;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -59,28 +55,6 @@ public class Voo {
         this.segmentos = segmentos;
     }
 
-    public int getParadas() {
-        return segmentos.size() - 1;
-    }
-
-    public int getDuracaoEmHoras() {
-        return (int) Duration.between(itinerario.getHorarioDecolagem(), itinerario.getHorarioPouso()).getSeconds() / 3600;
-    }
-
-    public List<Aeroporto> getPercurso() {
-        return segmentos
-                .stream()
-                .map(Segmento::getItinerario)
-                .map(itinerarioSegmento -> Stream.of(
-                        itinerarioSegmento.getOrigem(),
-                        itinerarioSegmento.getDestino()))
-                .reduce(Stream::concat)
-                .map(paradas -> paradas
-                        .distinct()
-                        .collect(toList()))
-                .orElse(emptyList());
-    }
-
     public void addSegmento(Segmento segmento) {
         segmentos.add(segmento);
     }
@@ -97,7 +71,6 @@ public class Voo {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, itinerario, segmentos);
     }
 

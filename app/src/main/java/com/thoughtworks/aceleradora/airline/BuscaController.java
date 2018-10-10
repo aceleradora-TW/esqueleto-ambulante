@@ -2,6 +2,7 @@ package com.thoughtworks.aceleradora.airline;
 
 import com.thoughtworks.aceleradora.airline.dominio.Busca;
 import com.thoughtworks.aceleradora.airline.dominio.VooRepository;
+import com.thoughtworks.aceleradora.airline.visao.FormatadorVoo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

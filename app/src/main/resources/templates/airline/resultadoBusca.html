@@ -85,18 +85,18 @@
                                 </div>
                             </div>
                             <div class="level-item has-text-centered">
-                                <div th:if="${voo.paradas >= 1}">
-                                    <p class="title" th:text="${voo.paradas}"></p>
-                                    <p class="heading" th:text="${voo.paradas > 1 ? 'Paradas' : 'Parada'}"></p>
+                                <div th:if="${@formatadores.voo.quantidadeParadas(voo) >= 1}">
+                                    <p class="title" th:text="${@formatadores.voo.quantidadeParadas(voo)}"></p>
+                                    <p class="heading" th:text="${@formatadores.voo.quantidadeParadas(voo) > 1 ? 'Paradas' : 'Parada'}"></p>
                                 </div>
 
-                                <div th:if="${voo.paradas == 0}">
+                                <div th:if="${@formatadores.voo.quantidadeParadas(voo) == 0}">
                                     <p class="heading">direto</p>
                                 </div>
                             </div>
                             <div class="level-item has-text-centered">
                                 <div>
-                                    <p class="title" th:text="${voo.duracaoEmHoras}"></p>
+                                    <p class="title" th:text="${@formatadores.voo.duracaoEmHoras(voo)}"></p>
                                     <p class="heading">Horas de voo</p>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                                     </div>
 
                                     <div class="columns is-multiline">
-                                        <div class="column" th:each="parada : ${voo.percurso}">
+                                        <div class="column" th:each="parada : ${@formatadores.voo.percurso(voo)}">
                                             <div class="column">
                                                 <div class="box has-text-left">
                                                     <p class="has-text-weight-bold" th:text="${parada.iata}"></p>
@@ -148,7 +148,6 @@
         seletorDataVolta.setDate(new Date(dataVoltaSelecionada));
 
         /*]]>*/
-
     })
 </script>
 </body>

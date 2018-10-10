@@ -50,7 +50,6 @@ public class Segmento {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, itinerario);
     }
 

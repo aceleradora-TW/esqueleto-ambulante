@@ -1,6 +1,7 @@
 package com.thoughtworks.aceleradora.airline.dominio;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Busca {
 
@@ -11,6 +12,14 @@ public class Busca {
     private LocalDate dataVolta;
 
     public Busca() {
+    }
+
+    public Busca(String origem, String destino, int adultos, LocalDate dataIda, LocalDate dataVolta) {
+        this.origem = origem;
+        this.destino = destino;
+        this.adultos = adultos;
+        this.dataIda = dataIda;
+        this.dataVolta = dataVolta;
     }
 
     public String getOrigem() {
@@ -62,5 +71,23 @@ public class Busca {
                 ", dataIda=" + dataIda +
                 ", dataVolta=" + dataVolta +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Busca busca = (Busca) o;
+        return adultos == busca.adultos &&
+                Objects.equals(origem, busca.origem) &&
+                Objects.equals(destino, busca.destino) &&
+                Objects.equals(dataIda, busca.dataIda) &&
+                Objects.equals(dataVolta, busca.dataVolta);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(origem, destino, adultos, dataIda, dataVolta);
     }
 }
