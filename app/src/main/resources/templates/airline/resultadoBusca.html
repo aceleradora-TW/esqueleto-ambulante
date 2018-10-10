@@ -24,27 +24,32 @@
                             <div class="columns is-multiline">
                                 <div class="control column">
                                     <label class="label">Origem</label>
-                                    <input class="input" type="text" placeholder="POA" name="origem" th:value="${busca.origem}" autocomplete="off">
+                                    <input class="input" type="text" placeholder="POA" name="origem"
+                                           th:value="${busca.origem}" autocomplete="off">
                                 </div>
 
                                 <div class="control column">
                                     <label class="label">Destino</label>
-                                    <input class="input" type="text" placeholder="MIA" name="destino" th:value="${busca.destino}" autocomplete="off">
+                                    <input class="input" type="text" placeholder="MIA" name="destino"
+                                           th:value="${busca.destino}" autocomplete="off">
                                 </div>
 
                                 <div class="control column">
                                     <label class="label">Data de ida</label>
-                                    <input class="input datepicker" type="text" name="dataIda" id="data-ida" autocomplete="off">
+                                    <input class="input datepicker" type="text" name="dataIda" id="data-ida"
+                                           autocomplete="off">
                                 </div>
 
                                 <div class="control column">
                                     <label class="label">Data de volta</label>
-                                    <input class="input" type="text" name="dataVolta" id="data-volta" autocomplete="off">
+                                    <input class="input" type="text" name="dataVolta" id="data-volta"
+                                           autocomplete="off">
                                 </div>
 
                                 <div class="control column">
                                     <label class="label">Passageiros</label>
-                                    <input class="input" type="number" name="adultos" min="1" max="10" th:value="${busca.adultos}">
+                                    <input class="input" type="number" name="adultos" min="1" max="10"
+                                           th:value="${busca.adultos}">
                                 </div>
                                 <div class="control column is-12">
                                     <button class="button is-primary" type="submit">BUSCAR</button>
@@ -65,44 +70,63 @@
 
             <div class="columns is-multiline">
                 <div class="column is-12" th:each="voo : ${voos}">
-                    <nav class="level box">
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="title" th:text="${voo.itinerario.origem.iata}"></p>
-                                <p class="heading" th:text="${voo.itinerario.origem.cidade}"></p>
+                    <div class="box">
+                        <nav class="level">
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="title" th:text="${voo.itinerario.origem.iata}"></p>
+                                    <p class="heading" th:text="${voo.itinerario.origem.cidade}"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="title" th:text="${voo.itinerario.destino.iata}"></p>
-                                <p class="heading" th:text="${voo.itinerario.destino.cidade}"></p>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="title" th:text="${voo.itinerario.destino.iata}"></p>
+                                    <p class="heading" th:text="${voo.itinerario.destino.cidade}"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div th:if="${voo.paradas >= 1}">
-                                <p class="title" th:text="${voo.paradas}"></p>
-                                <p class="heading" th:text="${voo.paradas > 1 ? 'Paradas' : 'Parada'}"></p>
-                            </div>
+                            <div class="level-item has-text-centered">
+                                <div th:if="${voo.paradas >= 1}">
+                                    <p class="title" th:text="${voo.paradas}"></p>
+                                    <p class="heading" th:text="${voo.paradas > 1 ? 'Paradas' : 'Parada'}"></p>
+                                </div>
 
-                            <div th:if="${voo.paradas == 0}">
-                                <p class="heading">direto</p>
+                                <div th:if="${voo.paradas == 0}">
+                                    <p class="heading">direto</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="title" th:text="${voo.duracaoEmHoras}"></p>
-                                <p class="heading">Horas de voo</p>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="title" th:text="${voo.duracaoEmHoras}"></p>
+                                    <p class="heading">Horas de voo</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <span class="icon is-large">
-                              <i class="fas fa-3x fa-angle-down"></i>
-                            </span>
-                            </div>
-                        </div>
-                    </nav>
+                        </nav>
 
+                        <section class="section">
+                            <footer class="footer">
+                                <div class="content">
+                                    <div class="columns">
+                                        <div class="column is-12">
+                                            <p class="heading has-text-weight-bold ">Percurso Detalhado:</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns is-multiline">
+                                        <div class="column" th:each="parada : ${voo.percurso}">
+                                            <div class="column">
+                                                <div class="box has-text-left">
+                                                    <p class="has-text-weight-bold" th:text="${parada.iata}"></p>
+                                                    <p class="is-size-7" th:text="${parada.nome}"></p>
+                                                    <p class="is-size-7 has-text-weight-bold"
+                                                       th:text="${parada.cidade}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,7 +135,7 @@
 </section>
 
 <script type="text/javascript" th:inline="javascript">
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         /*<![CDATA[*/
 
         var dataIdaSelecionada = /*[[${busca.dataIda}]]*/ 'default';
