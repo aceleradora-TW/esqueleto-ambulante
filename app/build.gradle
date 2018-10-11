@@ -61,6 +61,10 @@ flyway {
 
 bootRun {
     sourceResources sourceSets.main
+    jvmArgs = [
+            "-Dspring.devtools.restart.additional-paths=${project(':view').projectDir}"
+    ]
 }
 
+build.dependsOn(':view:transpilarRecursos')
 build.mustRunAfter('clean')

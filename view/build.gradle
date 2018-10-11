@@ -1,0 +1,6 @@
+task transpilarRecursos(type: Exec) {
+
+    environment "TRANSPILE_OUTPUT_DIR", "${project(':app').projectDir}/src/main/resources/public"
+
+    commandLine "npx", "webpack"
+}

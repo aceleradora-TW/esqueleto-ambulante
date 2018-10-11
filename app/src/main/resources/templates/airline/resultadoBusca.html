@@ -4,12 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Itinerarios Encontrados</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script src="https://unpkg.com/pikaday@1.7.0/pikaday.js"></script>
-    <script src="/js/caixa-de-busca.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/pikaday@1.7.0/css/pikaday.css">
+    <link rel="stylesheet" href="/main.css">
+    <script src="/main.js"></script>
 </head>
 <body>
 
@@ -87,7 +83,8 @@
                             <div class="level-item has-text-centered">
                                 <div th:if="${@formatadores.voo.quantidadeParadas(voo) >= 1}">
                                     <p class="title" th:text="${@formatadores.voo.quantidadeParadas(voo)}"></p>
-                                    <p class="heading" th:text="${@formatadores.voo.quantidadeParadas(voo) > 1 ? 'Paradas' : 'Parada'}"></p>
+                                    <p class="heading"
+                                       th:text="${@formatadores.voo.quantidadeParadas(voo) > 1 ? 'Paradas' : 'Parada'}"></p>
                                 </div>
 
                                 <div th:if="${@formatadores.voo.quantidadeParadas(voo) == 0}">
@@ -138,14 +135,21 @@
     document.addEventListener('DOMContentLoaded', function () {
         /*<![CDATA[*/
 
-        var dataIdaSelecionada = /*[[${busca.dataIda}]]*/ 'default';
-        var dataVoltaSelecionada = /*[[${busca.dataVolta}]]*/ 'default';
+        var dataIdaSelecionada = /*[[${busca.dataIda}]]*/ '';
+        var dataVoltaSelecionada = /*[[${busca.dataVolta}]]*/ '';
 
-        var seletorDataIda = seletorDeData('#data-ida');
-        var seletorDataVolta = seletorDeData('#data-volta');
+        var seletorDataIda = CaixaDeBusca.seletorDeData('#data-ida');
+        var seletorDataVolta = CaixaDeBusca.seletorDeData('#data-volta');
 
-        seletorDataIda.setDate(new Date(dataIdaSelecionada));
-        seletorDataVolta.setDate(new Date(dataVoltaSelecionada));
+        seletorDataIda.setDate(dataIdaSelecionada
+            ? new Date(dataIdaSelecionada)
+            : new Date()
+        );
+        seletorDataVolta.setDate(
+            dataVoltaSelecionada
+                ? new Date(dataVoltaSelecionada)
+                : new Date()
+        );
 
         /*]]>*/
     })
