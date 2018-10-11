@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <title>Busca de Voos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script src="https://unpkg.com/pikaday@1.7.0/pikaday.js"></script>
-    <script src="/js/seletor-de-data.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/pikaday@1.7.0/css/pikaday.css">
+    <script src="/js/bundle.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         form .input {
@@ -87,11 +83,11 @@
     </div>
 </section>
 <script type="text/javascript">
-
     document.addEventListener('DOMContentLoaded', function() {
-        var seletorDataIda = seletorDeData('#data-ida');
 
-        var seletorDataVolta = seletorDeData('#data-volta');
+        var seletorDataIda = CaixaDeBusca.seletorDeData('#data-ida');
+
+        var seletorDataVolta = CaixaDeBusca.seletorDeData('#data-volta');
     })
 </script>
 </body>

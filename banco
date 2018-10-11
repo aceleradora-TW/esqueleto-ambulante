@@ -1,3 +1,5 @@
+#!/bin/bash -eu
+
 case $1 in
   run)
     docker run --rm --name esqueleto-db -p 5432:5432 -e POSTGRES_PASSWORD=esqueleto -d postgres

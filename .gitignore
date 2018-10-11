@@ -33,3 +33,4 @@ bin/
 # Node
 node_modules
 package-lock.json
+app/src/main/resources/static/js/bundle.js
