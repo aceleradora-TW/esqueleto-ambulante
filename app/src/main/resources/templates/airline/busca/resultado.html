@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Itinerarios Encontrados</title>
+    <link rel="stylesheet" href="/main.css">
+    <script src="/main.js"></script>
+</head>
+<body>
+<nav th:replace="airline/busca/fragmentos/alterarBusca.html :: busca(${busca})" class="panel is-marginless">
+</nav>
+
+<div class="section has-background-white-bis">
+    <div class="container">
+        <h1 class="title">Escolha seu voo</h1>
+    </div>
+</div>
+
+<section class="section">
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-12" th:each="voo : ${voos}">
+                    <div th:replace="airline/busca/fragmentos/voo/index.html :: voo(${voo})">
+                    </div>
+                </div>
+            </div>
+    </section>
+</section>
+
+<script type="text/javascript" th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        /*<![CDATA[*/
+
+        var dataIdaSelecionada = /*[[${busca.dataIda}]]*/ '';
+        var dataVoltaSelecionada = /*[[${busca.dataVolta}]]*/ '';
+
+        var seletorDataIda = CaixaDeBusca.seletorDeData('#data-ida');
+        var seletorDataVolta = CaixaDeBusca.seletorDeData('#data-volta');
+
+        seletorDataIda.setDate(dataIdaSelecionada
+            ? new Date(dataIdaSelecionada)
+            : new Date()
+        );
+        seletorDataVolta.setDate(
+            dataVoltaSelecionada
+                ? new Date(dataVoltaSelecionada)
+                : new Date()
+        );
+
+        document
+            .querySelectorAll('.flight-detail')
+            .forEach((flightDetail) => {
+
+                var flightDetailHeader = flightDetail.querySelector('.flight-detail-header');
+                var flightDetailBody = flightDetail.querySelector('.flight-detail-body');
+
+                flightDetailHeader.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    flightDetailBody.classList.toggle('is-hidden');
+
+                    setTimeout(() => {
+                        flightDetail.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        if (flightDetailBody.classList.contains('no-opacity')) {
+                            flightDetailBody.classList.remove('no-opacity');
+                            flightDetailBody.classList.add('full-opacity');
+                        } else {
+                            flightDetailBody.classList.remove('full-opacity');
+                            flightDetailBody.classList.add('no-opacity');
+                        }
+
+                    }, 300);
+
+                });
+
+            });
+
+
+        /*]]>*/
+    })
+</script>
+</body>
+</html>

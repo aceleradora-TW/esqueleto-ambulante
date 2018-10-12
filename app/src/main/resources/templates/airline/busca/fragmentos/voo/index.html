@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div class="box is-paddingless flight-detail" th:fragment="voo(voo)">
+    <nav th:replace="airline/busca/fragmentos/voo/resumo :: resumoDoVoo(${voo})"></nav>
+
+    <div th:replace="airline/busca/fragmentos/voo/detalhamento :: detalhesDoVoo(${voo})"></div>
+</div>
+</html>

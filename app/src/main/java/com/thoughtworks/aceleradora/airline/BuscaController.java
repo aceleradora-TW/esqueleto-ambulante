@@ -2,7 +2,6 @@ package com.thoughtworks.aceleradora.airline;
 
 import com.thoughtworks.aceleradora.airline.dominio.Busca;
 import com.thoughtworks.aceleradora.airline.dominio.VooRepository;
-import com.thoughtworks.aceleradora.airline.visao.FormatadorVoo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ public class BuscaController {
 
     @GetMapping("/busca")
     public String caixaDeBusca() {
-        return "airline/busca";
+        return "airline/busca/caixaDeBusca";
     }
 
     @PostMapping("/busca")
@@ -32,6 +31,6 @@ public class BuscaController {
         model.addAttribute("busca", busca);
         model.addAttribute("voos", vooRepository.findAll());
 
-        return "airline/resultadoBusca";
+        return "airline/busca/resultado";
     }
 }

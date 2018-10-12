@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<nav class="level has-background-white-ter flight-detail-header" th:fragment="resumoDoVoo(voo)">
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="title" th:text="${voo.itinerario.origem.iata}"></p>
+            <p class="heading" th:text="${voo.itinerario.origem.cidade}"></p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="title" th:text="${voo.itinerario.destino.iata}"></p>
+            <p class="heading" th:text="${voo.itinerario.destino.cidade}"></p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div th:if="${@formatadores.voo.quantidadeParadas(voo) >= 1}">
+            <p class="title" th:text="${@formatadores.voo.quantidadeParadas(voo)}"></p>
+            <p class="heading"
+               th:text="${@formatadores.voo.quantidadeParadas(voo) > 1 ? 'Paradas' : 'Parada'}"></p>
+        </div>
+
+        <div th:if="${@formatadores.voo.quantidadeParadas(voo) == 0}">
+            <p class="heading">direto</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="title" th:text="${@formatadores.voo.duracaoEmHoras(voo)}"></p>
+            <p class="heading">Horas de voo</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">À partir de</p>
+            <p class="title">R$40</p>
+        </div>
+    </div>
+</nav>
+</html>
