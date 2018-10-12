@@ -39,7 +39,7 @@ public class BuscaControllerTest {
     public void renderizaCaixaDeBusca() {
         String paginaRenderizada = controller.caixaDeBusca();
 
-        assertThat(paginaRenderizada, equalTo("airline/busca"));
+        assertThat(paginaRenderizada, equalTo("airline/busca/caixaDeBusca"));
     }
 
     @Test
@@ -57,9 +57,9 @@ public class BuscaControllerTest {
 
         String paginaRenderizada = controller.busca(buscaEfetuada, model);
 
-        assertThat(paginaRenderizada,equalTo("airline/resultadoBusca"));
         verify(model).addAttribute("busca", buscaEfetuada);
         verify(model).addAttribute("voos", voosEncontrados);
+        assertThat(paginaRenderizada,equalTo("airline/busca/resultado"));
 
     }
 }
