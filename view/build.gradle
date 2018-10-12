@@ -9,7 +9,7 @@ task npmInstall(type: Exec) {
     commandLine 'npm', 'install', '--verbose'
 }
 
-task transpilarRecursos(type: Exec, dependsOn: ['npmInstall']) {
+task transpilarRecursosDev(type: Exec, dependsOn: ['npmInstall']) {
 
     def outputLocation = "${project(':app').projectDir}/src/main/resources/public"
 
@@ -21,7 +21,23 @@ task transpilarRecursos(type: Exec, dependsOn: ['npmInstall']) {
 
     outputs.dir(outputLocation)
 
-    environment "TRANSPILE_OUTPUT_DIR", "${project(':app').projectDir}/src/main/resources/public"
+    environment "TRANSPILE_OUTPUT_DIR", outputLocation
+    environment "TRANSPILE_MODE", "development"
+
+    commandLine "npm", "run", "transpile:watch"
+}
+
+task transpilarRecursosProd(type: Exec, dependsOn: ['npmInstall']) {
+
+    def outputLocation = "${project(':app').projectDir}/src/main/resources/public"
+
+    environment "TRANSPILE_OUTPUT_DIR", outputLocation
+    environment "TRANSPILE_MODE", "production"
 
     commandLine "npm", "run", "transpile"
 }
+
+task viewRun {
+    dependsOn = [':view:transpilarRecursosDev']
+}
+

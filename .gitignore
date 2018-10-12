@@ -33,4 +33,7 @@ bin/
 # Node
 node_modules
 package-lock.json
-app/src/main/resources/static/js/bundle.js
+
+# Recursos estaticos
+app/src/main/resources/public/*.css
+app/src/main/resources/public/*.js

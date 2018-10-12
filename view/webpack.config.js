@@ -2,8 +2,10 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const rootDir = process.env.TRANSPILE_OUTPUT_DIR;
+const transpileMode = process.env.TRANSPILE_MODE;
 
-console.log(">>>>>>>>>>>>>>>>> " + rootDir);
+console.log("OUTPUT  >>>>>>>>>>>>>>>>> " + rootDir);
+console.log("MODE    >>>>>>>>>>>>>>>>> " + transpileMode);
 
 module.exports = {
 
@@ -15,7 +17,7 @@ module.exports = {
         path: rootDir
     },
 
-    mode: 'development',
+    mode: transpileMode,
 
     module: {
         rules: [{

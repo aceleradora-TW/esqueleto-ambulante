@@ -67,8 +67,4 @@ bootRun {
     ]
 }
 
-task viewRun {
-    dependsOn = [':view:transpilarRecursos']
-}
-
 build.mustRunAfter('clean')

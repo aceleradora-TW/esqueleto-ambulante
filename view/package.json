@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "transpile": "./node_modules/.bin/webpack --watch"
+    "transpile:watch": "./node_modules/.bin/webpack --watch",
+    "transpile": "./node_modules/.bin/webpack"
   },
   "author": "",
   "license": "ISC",
