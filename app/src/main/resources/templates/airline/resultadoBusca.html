@@ -8,66 +8,68 @@
     <script src="/main.js"></script>
 </head>
 <body>
+<nav class="panel is-marginless">
+    <div class="panel-block has-background-primary">
+        <form action="/airline/busca" method="post">
+            <div class="container is-fluid">
+                <p class="heading">Alterar busca</p>
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="columns is-multiline">
+                            <div class="control column">
+                                <label class="label heading">Origem</label>
+                                <input class="input is-radiusless is-shadowless" type="text" placeholder="POA" name="origem"
+                                       th:value="${busca.origem}" autocomplete="off">
+                            </div>
+                            <div class="control column">
+                                <label class="label heading">Destino</label>
+                                <input class="input is-radiusless is-shadowless" type="text" placeholder="MIA" name="destino"
+                                       th:value="${busca.destino}" autocomplete="off">
+                            </div>
+                            <div class="control column">
+                                <label class="label heading">Data de ida</label>
+                                <input class="input datepicker is-radiusless is-shadowless" type="text" name="dataIda" id="data-ida"
+                                       autocomplete="off">
+                            </div>
+                            <div class="control column">
+                                <label class="label heading">Data de volta</label>
+                                <input class="input is-radiusless is-shadowless" type="text" name="dataVolta" id="data-volta"
+                                       autocomplete="off">
+                            </div>
+                            <div class="control column">
+                                <label class="label heading">Passageiros</label>
+                                <input class="input is-radiusless is-shadowless" type="number" name="adultos" min="1" max="10"
+                                       th:value="${busca.adultos}">
+                            </div>
+                            <div class="control column is-12">
+                                <button class="button is-primary is-inverted is-outlined" type="submit">BUSCAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div class="section has-background-white-bis">
+    <div class="container">
+        <h1 class="title">Escolha seu voo</h1>
+    </div>
+</div>
+
+
 
 <section class="section">
     <section class="section">
-        <div class="container">
-            <nav class="panel">
-                <p class="panel-heading">Alterar Busca</p>
-                <div class="panel-block">
-                    <form action="/airline/busca" method="post">
-                        <div class="field is-grouped">
-                            <div class="columns is-multiline">
-                                <div class="control column">
-                                    <label class="label">Origem</label>
-                                    <input class="input" type="text" placeholder="POA" name="origem"
-                                           th:value="${busca.origem}" autocomplete="off">
-                                </div>
-
-                                <div class="control column">
-                                    <label class="label">Destino</label>
-                                    <input class="input" type="text" placeholder="MIA" name="destino"
-                                           th:value="${busca.destino}" autocomplete="off">
-                                </div>
-
-                                <div class="control column">
-                                    <label class="label">Data de ida</label>
-                                    <input class="input datepicker" type="text" name="dataIda" id="data-ida"
-                                           autocomplete="off">
-                                </div>
-
-                                <div class="control column">
-                                    <label class="label">Data de volta</label>
-                                    <input class="input" type="text" name="dataVolta" id="data-volta"
-                                           autocomplete="off">
-                                </div>
-
-                                <div class="control column">
-                                    <label class="label">Passageiros</label>
-                                    <input class="input" type="number" name="adultos" min="1" max="10"
-                                           th:value="${busca.adultos}">
-                                </div>
-                                <div class="control column is-12">
-                                    <button class="button is-primary" type="submit">BUSCAR</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </nav>
-        </div>
-    </section>
-
-    <section class="section">
 
         <div class="container">
 
-            <h1 class="subtitle">Escolha seu voo:</h1>
 
             <div class="columns is-multiline">
                 <div class="column is-12" th:each="voo : ${voos}">
-                    <div class="box">
-                        <nav class="level">
+                    <div class="box is-paddingless flight-detail">
+                        <nav class="level has-background-white-ter flight-detail-header">
                             <div class="level-item has-text-centered">
                                 <div>
                                     <p class="title" th:text="${voo.itinerario.origem.iata}"></p>
@@ -97,32 +99,154 @@
                                     <p class="heading">Horas de voo</p>
                                 </div>
                             </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">À partir de</p>
+                                    <p class="title">R$40</p>
+                                </div>
+                            </div>
                         </nav>
 
-                        <section class="section">
-                            <footer class="footer">
-                                <div class="content">
-                                    <div class="columns">
-                                        <div class="column is-12">
-                                            <p class="heading has-text-weight-bold ">Percurso Detalhado:</p>
-                                        </div>
-                                    </div>
+                        <div class="container is-hidden no-opacity flight-detail-body">
+                            <div class="columns is-multiline">
 
-                                    <div class="columns is-multiline">
-                                        <div class="column" th:each="parada : ${@formatadores.voo.percurso(voo)}">
-                                            <div class="column">
-                                                <div class="box has-text-left">
+                                <div class="column is-11 is-offset-1">
+                                    <section class="section">
+                                        <ul class="steps has-content-centered has-gaps is-centered">
+                                            <li class="steps-segment"
+                                                th:each="parada, paradaIdx : ${@formatadores.voo.percurso(voo)}">
+                                                <span class="steps-marker">
+                                                    <span th:switch="${paradaIdx.index}">
+                                                        <i class="fa fa-plane-departure" th:case="0"></i>
+                                                        <i class="fa fa-plane-arrival"
+                                                           th:case="${@formatadores.voo.quantidadeParadas(voo) + 1}"></i>
+                                                        <i class="fa fa-plane" th:case="*"></i>
+                                                    </span>
+                                                </span>
+                                                <div class="steps-content">
                                                     <p class="has-text-weight-bold" th:text="${parada.iata}"></p>
                                                     <p class="is-size-7" th:text="${parada.nome}"></p>
                                                     <p class="is-size-7 has-text-weight-bold"
                                                        th:text="${parada.cidade}"></p>
                                                 </div>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                </div>
+
+                                <div class="column is-10">
+                                    <section class="section is-paddingless">
+                                        <div class="pricing-table is-comparative">
+
+                                            <div class="pricing-plan is-features">
+                                                <div class="plan-header">&nbsp;</div>
+                                                <div class="plan-items">
+                                                    <div class="plan-item has-text-dark">
+                                                        <span> Bagagem de mão </span>
+                                                        <span class="icon"> <i class="fas fa-briefcase"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item has-text-dark">
+                                                        <span> Bagagem Despachada </span>
+                                                        <span class="icon"> <i class="fas fa-luggage-cart"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item has-text-dark">
+                                                        <span> Cancelamento </span>
+                                                        <span class="icon"> <i
+                                                                class="fas fa-calendar-times"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item has-text-dark">
+                                                        <span> Remarcação</span>
+                                                        <span class="icon"> <i class="fas fa-clock"></i> </span>
+                                                    </div>
+                                                </div>
+                                                <div class="plan-price"><span class="plan-price-amount">&nbsp;</span>
+                                                </div>
+                                                <div class="plan-footer"></div>
+                                            </div>
+
+                                            <div class="pricing-plan is-warning">
+                                                <div class="plan-header has-background-warning">BASIC</div>
+                                                <div class="plan-items">
+                                                    <div class="plan-item has-background-white-bis">
+                                                        <span class="icon has-text-success"> <i
+                                                                class="fas fa-check"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon"> <i class="fas fa-times"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon"> <i class="fas fa-times"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon"> <i class="fas fa-times"></i> </span>
+                                                    </div>
+                                                </div>
+                                                <div class="plan-price"><span class="plan-price-amount"><span
+                                                        class="plan-price-currency">R$</span>40</span></div>
+                                                <div class="plan-footer">
+                                                    <input type="radio">
+                                                </div>
+                                            </div>
+
+                                            <div class="pricing-plan is-primary">
+                                                <div class="plan-header has-background-primary">FLEX</div>
+                                                <div class="plan-items">
+                                                    <div class="plan-item">
+                                                        <span class="icon has-text-success"> <i
+                                                                class="fas fa-check"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon has-text-success"> <i
+                                                                class="fas fa-check"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon"> <i class="fas fa-times"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span>Custo adicional</span>
+                                                    </div>
+                                                </div>
+                                                <div class="plan-price"><span class="plan-price-amount"><span
+                                                        class="plan-price-currency">R$</span>60</span></div>
+                                                <div class="plan-footer">
+                                                    <input type="radio">
+                                                </div>
+                                            </div>
+
+                                            <div class="pricing-plan is-danger">
+                                                <div class="plan-header has-background-danger">PREMIUM</div>
+                                                <div class="plan-items">
+                                                    <div class="plan-item">
+                                                        <span class="icon has-text-success"> <i
+                                                                class="fas fa-check"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon has-text-success"> <i
+                                                                class="fas fa-check"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon has-text-success"> <i
+                                                                class="fas fa-check"></i> </span>
+                                                    </div>
+                                                    <div class="plan-item">
+                                                        <span class="icon has-text-success"> <i
+                                                                class="fas fa-check"></i> </span>
+                                                    </div>
+                                                </div>
+                                                <div class="plan-price"><span class="plan-price-amount"><span
+                                                        class="plan-price-currency">R$</span>100</span></div>
+                                                <div class="plan-footer">
+                                                    <input type="radio" name="answer">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </section>
                                 </div>
-                            </footer>
-                        </section>
+                            </div>
+                            <div class="section has-background-white-bis is-fullwidth is-marginless">
+                                <button class="button is-primary is-pulled-right">Selecionar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,6 +274,37 @@
                 ? new Date(dataVoltaSelecionada)
                 : new Date()
         );
+
+        document
+            .querySelectorAll('.flight-detail')
+            .forEach((flightDetail) => {
+
+                var flightDetailHeader = flightDetail.querySelector('.flight-detail-header');
+                var flightDetailBody = flightDetail.querySelector('.flight-detail-body');
+
+                flightDetailHeader.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    flightDetailBody.classList.toggle('is-hidden');
+
+                    setTimeout(() => {
+                        flightDetail.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        if (flightDetailBody.classList.contains('no-opacity')) {
+                            flightDetailBody.classList.remove('no-opacity');
+                            flightDetailBody.classList.add('full-opacity');
+                        } else {
+                            flightDetailBody.classList.remove('full-opacity');
+                            flightDetailBody.classList.add('no-opacity');
+                        }
+
+                    }, 300);
+
+                });
+
+            });
+
 
         /*]]>*/
     })

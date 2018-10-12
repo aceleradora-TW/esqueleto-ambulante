@@ -5,13 +5,11 @@ ext {
 task npmInstall(type: Exec, group: groupName) {
     description = "Instala dependencias dos testes funcionais (se ja nao estiverem instaladas)."
 
-    def nodeModules = new File("$rootDir/testes-funcionais/node_modules")
+    inputs.file("package.json")
 
-    if (nodeModules.exists()) {
-        commandLine 'printf', "\n >>> Cypress ja esta instalado, prosseguindo.\n"
-    } else {
-        commandLine 'npm', 'install', '--verbose'
-    }
+    outputs.dir("node_modules")
+
+    commandLine 'npm', 'install', '--verbose'
 }
 
 task cypressRunLocal(type: Exec, dependsOn: ['npmInstall', ':app:startFromJar'], group: groupName) {

@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "transpile": "./node_modules/.bin/webpack --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.4.1",
     "bulma": "^0.7.1",
+    "bulma-o-steps": "^1.0.9",
+    "bulma-pricingtable": "^0.2.0",
+    "bulma-steps-component": "^0.5.3",
     "moment": "^2.22.2",
     "pikaday": "^1.7.0"
   },
   "devDependencies": {
     "css-loader": "^1.0.0",
+    "hard-source-webpack-plugin": "^0.12.0",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",

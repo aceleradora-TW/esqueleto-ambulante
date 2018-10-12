@@ -62,9 +62,13 @@ flyway {
 bootRun {
     sourceResources sourceSets.main
     jvmArgs = [
-            "-Dspring.devtools.restart.additional-paths=${project(':view').projectDir}"
+            "-Dspring.profiles.active=dev",
+            "-Dspring.resources.chain.cache=false"
     ]
 }
 
-build.dependsOn(':view:transpilarRecursos')
+task viewRun {
+    dependsOn = [':view:transpilarRecursos']
+}
+
 build.mustRunAfter('clean')

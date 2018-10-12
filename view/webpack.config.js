@@ -1,3 +1,4 @@
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const rootDir = process.env.TRANSPILE_OUTPUT_DIR;
@@ -14,6 +15,8 @@ module.exports = {
         path: rootDir
     },
 
+    mode: 'development',
+
     module: {
         rules: [{
             test: /\.sass$/,
@@ -25,7 +28,8 @@ module.exports = {
         }]
     },
     plugins: [
-        new MiniCssExtractPlugin({})
+        new MiniCssExtractPlugin({}),
+        new HardSourceWebpackPlugin()
     ]
 
 };

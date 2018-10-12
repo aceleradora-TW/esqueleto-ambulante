@@ -1,6 +1,27 @@
-task transpilarRecursos(type: Exec) {
+task npmInstall(type: Exec) {
+    description = "Instala dependencias dos testes funcionais (se ja nao estiverem instaladas)."
+
+    inputs.file("package.json")
+    inputs.file("package-lock.json")
+
+    outputs.dir("node_modules")
+
+    commandLine 'npm', 'install', '--verbose'
+}
+
+task transpilarRecursos(type: Exec, dependsOn: ['npmInstall']) {
+
+    def outputLocation = "${project(':app').projectDir}/src/main/resources/public"
+
+    inputs.file("main.js")
+    inputs.file("package.json")
+    inputs.file("webpack.config.js")
+    inputs.dir("js")
+    inputs.dir("sass")
+
+    outputs.dir(outputLocation)
 
     environment "TRANSPILE_OUTPUT_DIR", "${project(':app').projectDir}/src/main/resources/public"
 
-    commandLine "npx", "webpack"
+    commandLine "npm", "run", "transpile"
 }

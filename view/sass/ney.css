@@ -1,3 +1,29 @@
-.menino-ney {
+.pricing-plan {
+    margin: 8px !important;
+}
 
+.pricing-plan.is-features {
+    border: 0 !important;
+}
+
+.pricing-plan.is-features .plan-items .plan-item {
+    background-color: transparent !important;
+    text-align: right;
+}
+
+.flight-detail-header {
+    padding: 2.5rem;
+}
+
+.flight-detail-header:hover {
+    cursor: pointer;
+}
+
+.no-opacity {
+    opacity: 0;
+}
+
+.full-opacity {
+    opacity: 1;
+    transition: opacity 0.4s ease-in;
 }
