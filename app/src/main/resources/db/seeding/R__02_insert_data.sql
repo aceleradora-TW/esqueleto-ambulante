@@ -74,3 +74,8 @@ INSERT INTO voo_segmento(voo_id, segmento_id) VALUES (1, 2);
 
 --   POA > CWB
 INSERT INTO voo_segmento(voo_id, segmento_id) VALUES (2, 3);
+
+INSERT INTO atributo_tarifario(regulacao, permissao_regulacao) VALUES ('BAGAGEM_DE_MAO', 'PERMITIDO');
+INSERT INTO atributo_tarifario(regulacao, permissao_regulacao) VALUES ('BAGAGEM_DESPACHADA', 'NAO_PERMITIDO');
+INSERT INTO atributo_tarifario(regulacao, permissao_regulacao) VALUES ('CANCELAMENTO', 'NAO_PERMITIDO');
+INSERT INTO atributo_tarifario(regulacao, permissao_regulacao) VALUES ('REMARCACAO', 'NAO_PERMITIDO');
