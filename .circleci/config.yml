@@ -98,5 +98,3 @@ workflows:
     jobs:
       - build
 
-          requires:
-            - deploy-integracao
