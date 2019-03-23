@@ -1,7 +1,7 @@
 package com.thoughtworks.aceleradora.controllers;
 
-import com.thoughtworks.aceleradora.dominio.Pessoa;
-import com.thoughtworks.aceleradora.dominio.PessoaRepository;
+import com.thoughtworks.aceleradora.dominio.FormularioPessoa;
+import com.thoughtworks.aceleradora.services.PessoaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,28 +12,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pessoa")
 public class PessoaController {
 
-    private PessoaRepository repositorio;
+    private PessoaService pessoaService;
 
-    public PessoaController(PessoaRepository repositorio) {
-        this.repositorio = repositorio;
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
     }
 
     @GetMapping("/cadastro")
-    public String formularioCadastro() {
+    public String formularioCadastro(Model model) {
+        FormularioPessoa formulario = new FormularioPessoa();
+
+        model.addAttribute("pessoa", formulario);
+
         return "pessoa/cadastro";
     }
 
     @PostMapping("/cadastro")
-    public String salvaCadastro(Pessoa pessoa) {
-
-        repositorio.save(pessoa);
+    public String salvaCadastro(FormularioPessoa formulario) {
+        pessoaService.salvar(formulario);
 
         return "redirect:lista";
     }
 
     @GetMapping("/lista")
     public String lista(Model model) {
-        model.addAttribute("pessoas", repositorio.findAll());
+        model.addAttribute("pessoas", pessoaService.buscarTodos());
 
         return "pessoa/lista";
     }

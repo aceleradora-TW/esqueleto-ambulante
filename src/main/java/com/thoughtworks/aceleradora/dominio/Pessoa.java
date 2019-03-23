@@ -4,9 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
-import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.joining;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
