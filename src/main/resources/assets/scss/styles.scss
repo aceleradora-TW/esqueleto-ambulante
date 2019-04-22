@@ -1,0 +1,23 @@
+// import bulma
+@import "~bulma/bulma";
+
+// font-awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+
+// Config
+@import 'config/variables';
+@import 'config/custom-helpers';
+
+//helpers
+@import 'helpers/spacing';
+
+// Components
+@import 'components/nav';
+
+svg {
+    display: block;
+}
+
+#sprite-skull-fragment {
+    stroke: red;
+}
