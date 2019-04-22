@@ -1,39 +1,76 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html th:replace="~{layout :: layout(~{::title}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Pessoas</title>
+    <title>Aceleradora Ágil - Esqueleto Ambulante</title>
 </head>
-
 <body>
+<section class="section">
 
-<div class="section">
-    <div class="container">
-        <h1 class="title">Pessoas</h1>
+    <section class="container">
 
-        <div class="columns is-multiline">
-            <div class="column is-4" th:each="pessoa: ${pessoas}">
+        <h1 class="title">Crie a sua Lista</h1>
+
+        <div class="columns">
+            <div class="column is-6">
                 <div class="box">
-                    <article class="media">
-                        <div class="media-content">
-                            <div class="content">
-                                <p>
-                                    <strong th:text="${pessoa.nome}"></strong>
-                                    <small>@johnsmith</small>
-                                    <small>31m</small>
-                                    <br>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet
-                                    massa
-                                    fringilla egestas. Nullam condimentum luctus turpis.
-                                </p>
+                    <form action="/pessoa/cadastro" method="post">
+                        <div class="field">
+                            <label class="label">Nome da sua Lista</label>
+                            <div class="control">
+                                <input class="input" type="text" name="nome" placeholder="Ex.: Minha Lista Compras 1">
                             </div>
                         </div>
-                    </article>
+
+                        <div class="field">
+                            <label class="label">Selecione produtos:</label>
+                            <div class="control">
+                                    <ul class="lista-produtos">
+                                        <li>
+                                            <label class="checkbox">
+                                                <input type="checkbox" checked>
+                                                Maçã
+                                            </label>
+                                        </li>
+
+
+                                        <li><label class="checkbox">
+                                            <input type="checkbox" checked>
+                                            Banana
+                                        </label>
+                                        </li>
+
+
+                                        <li><label class="checkbox">
+                                            <input type="checkbox" checked>
+                                            Laranja
+                                        </label>
+                                        </li>
+
+
+                                        <li><label class="checkbox">
+                                            <input type="checkbox" checked>
+                                            Morango
+                                        </label>
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+
+
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary" type="submit">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
-    </div>
-</div>
+    </section>
+
+</section>
 
 </body>
 </html>
