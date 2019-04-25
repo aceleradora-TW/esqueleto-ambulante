@@ -4383,6 +4383,19 @@
 
 /***/ }),
 
+/***/ "./node_modules/animate.css/animate.css":
+/*!**********************************************!*\
+  !*** ./node_modules/animate.css/animate.css ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
+
+/***/ }),
+
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -15495,6 +15508,8 @@ module.exports = g;
 __webpack_require__(/*! @fortawesome/fontawesome-free/js/all */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
 
 __webpack_require__(/*! ../scss/styles.scss */ "./src/main/resources/assets/scss/styles.scss");
+
+__webpack_require__(/*! animate.css */ "./node_modules/animate.css/animate.css");
 
 // import DevForm from './components/devForm.js'
 // const devForm = new DevForm();
