@@ -4,13 +4,14 @@ Uma aplicação mínima em Spring Boot.
 
 [![CircleCI](https://circleci.com/gh/aceleradora-TW/esqueleto-ambulante/tree/master.svg?style=svg)](https://circleci.com/gh/aceleradora-TW/esqueleto-ambulante/tree/master)
 
-![Caveira](./src/main/resources/static/images/sneaky.gif)
+![Caveira](./src/main/resources/static/assets/images/sneaky.gif)
 
 
 ## Dependências
 
 - Java 11
 - Postgres 9.5
+- Node
 
 ### Configurando banco de dados local
 
@@ -40,6 +41,8 @@ docker exec -it esqueleto-db psql -U postgres -c 'CREATE DATABASE esqueleto'
 
 ## Executando a aplicação
 
+### :: Back-end ::
+
 Para inicar o servidor:
 
 ```sh
@@ -56,10 +59,30 @@ Executando os testes:
 ./gradlew test
 ```
 
+
+Inicializar o build automático:
+
+```sh
+./gradlew build --continuous
+```
+
 Demais comandos disponíveis:
 
 ```sh
 ./gradlew tasks
+```
+###  :: Front-end ::
+
+Instalar dependencias do node:
+
+```sh
+npm install
+```
+
+Compilação contínua dos arquivos de front-end:
+
+```sh
+npm run watch
 ```
 
 ## Ferramentas
