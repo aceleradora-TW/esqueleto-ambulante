@@ -1,4 +1,4 @@
-package com.thoughtworks.aceleradora.api;
+package com.thoughtworks.aceleradora.webservice;
 
 import com.thoughtworks.aceleradora.dominio.Pessoa;
 import com.thoughtworks.aceleradora.dominio.PessoaRepository;
@@ -11,12 +11,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/pessoas")
-public class PessoaControllerApi {
+public class PessoaControllerWs {
 
 
     private PessoaRepository repositorio;
 
-    public PessoaControllerApi(PessoaRepository repositorio) {
+    public PessoaControllerWs(PessoaRepository repositorio) {
         this.repositorio = repositorio;
     }
 
