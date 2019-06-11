@@ -4,12 +4,12 @@ import com.thoughtworks.aceleradora.dominio.Pessoa;
 import com.thoughtworks.aceleradora.dominio.PessoaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/pessoa")
+import java.util.List;
+
+@RestController
+@RequestMapping("/ws/pessoas")
 public class PessoaController {
 
     private PessoaRepository repositorio;
@@ -18,24 +18,17 @@ public class PessoaController {
         this.repositorio = repositorio;
     }
 
-    @GetMapping("/cadastro")
-    public String formularioCadastro() {
-        return "pessoa/cadastro";
+    @GetMapping("")
+    @ResponseBody
+    public List<Pessoa> getAll() {
+        return repositorio.findAll();
     }
 
-    @PostMapping("/cadastro")
-    public String salvaCadastro(Pessoa pessoa) {
+    @PostMapping("/save")
+    @ResponseBody
+    public Pessoa salvaCadastro(Pessoa pessoa) {
 
-        repositorio.save(pessoa);
-
-        return "redirect:lista";
-    }
-
-    @GetMapping("/lista")
-    public String lista(Model model) {
-        model.addAttribute("pessoas", repositorio.findAll());
-
-        return "pessoa/lista";
+        return repositorio.save(pessoa);
     }
 
 }

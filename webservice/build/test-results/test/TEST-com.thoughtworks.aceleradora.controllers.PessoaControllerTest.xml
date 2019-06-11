@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.thoughtworks.aceleradora.controllers.PessoaControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-06-11T00:37:05" hostname="MBP-de-Jean" time="0.035">
+  <properties/>
+  <testcase name="salvaDadosDaPessoaCadastradaERedirecionaParaLista" classname="com.thoughtworks.aceleradora.controllers.PessoaControllerTest" time="0.013"/>
+  <testcase name="renderizaFormularioDeCadastro" classname="com.thoughtworks.aceleradora.controllers.PessoaControllerTest" time="0.0"/>
+  <testcase name="renderizaListaDePessoasComTodasAsPessoasDoBanco" classname="com.thoughtworks.aceleradora.controllers.PessoaControllerTest" time="0.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
