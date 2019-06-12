@@ -1,4 +1,4 @@
-CREATE TABLE pessoa (
+CREATE TABLE pessoas (
 
   id serial primary key,
   nome varchar(255),
