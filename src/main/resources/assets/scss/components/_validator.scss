@@ -1,0 +1,16 @@
+.has-error {
+  input[type="text"] {
+    border: 1px solid red;
+  }
+  input[type="email"] {
+    border: 1px solid red;
+  }
+  input[type="password"]{
+    border: 1px solid red;
+  }
+
+  .help-block {
+    color: red;
+    text-align: center;
+  }
+}
