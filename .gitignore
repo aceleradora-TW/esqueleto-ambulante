@@ -2,6 +2,15 @@
 /build/
 app/build
 testes-funcionais/build
+/src/main/resources/static/css/
+/src/main/resources/static/js/
+/src/main/resources/static/svg/
+/cypress/plugins/
+/cypress/support/
+/cypress/videos/
+/cypress/fixtures/
+*.iws
+*.ipr
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -32,4 +41,6 @@ bin/
 
 # Node
 node_modules
-package-lock.json
+
+# Lombok
+lombok.config
